@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #3d3d3d;
+}
+
+.cubes-3d {
+  display: flex;
+  gap: 20px;
+
+  transform-style: preserve-3d;
+  transform: rotateY(30deg) rotateX(10deg);
+
+  &:hover &__item {
+    transform: rotateX(360deg);
+  }
+    
+  &:hover &__item:last-child {
+    transform: rotateX(630deg);
+  }
+
+  &__item {
+    width: 100px;
+    height: 100px;
+    
+    transform-style: preserve-3d;
+    transition: 1.5s ease-in-out;
+    transition-delay: calc(0.07s * var(--j));
+
+    position: relative;
+
+    &:last-child {
+      span  {
+        color: #333;
+        background-image: linear-gradient(#29c040, #32ed4e);
+      }
+      &::before,
+      &::after {
+        background-color: #29ab3c;
+      }
+    }
+
+    span {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4em;
+      color: #fff;
+      background-image: linear-gradient(#434343, #535353);
+
+      transform-style: preserve-3d;
+      transform: rotateX(calc(90deg * var(--i))) translateZ(50px);
+
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    &::before {
+      content: "";
+
+      width: 100%;
+      height: 100%;
+      
+      transform-origin: left;
+      transform: rotateY(90deg) translateX(-50px);      
+      background-color: #373737;
+    
+      position: absolute;
+    }
+
+    &::after {
+      content: "";
+
+      width: 100%;
+      height: 100%;
+
+      transform-origin: right;
+      transform: rotateY(90deg) translateX(50px);      
+      background-color: #373737;
+
+      position: absolute;
+    }
+  }
+}
